@@ -1,0 +1,33 @@
+1. Navigate to whatever directory you want to save the SSH key to.
+2. Open Git Bash
+$ ssh-keygen -t rsa -b 4096 -C "mlmicahlongmire@gmail.com"
+Name the key and set a passphrase. (In this case, TheTome & TheTome.pub)
+cat TheTome.pub
+3. Copy all the contents and navigate to here: https://github.com/settings/keys
+4. Add the key to your SSH keys.
+5. ssh-add.exe the private key and enter the passphrase.
+6. Turn on ssh-add
+eval `ssh-agent -s`
+7. Add your key.
+ssh-add.exe /d/Keys/.ssh/TheTome
+(OR run this script: /d/scripts/SSH-Add.sh)
+8. Test using 'ssh -T git@github.com'.
+It should return: Hi bobbyhiddn! You've successfully authenticated, but GitHub does not provide shell access.
+
+Now, we need to get our repo publishing:
+
+First, initialize a git repo in the directory of your choice:
+git init
+it add . - Adds all files in directory.
+git commit -m "First commit"
+git branch -m main
+Create a repository in github and find the url, for example: git@github.com:bobbyhiddn/Test.git
+(You can do this from cmd line by accessing GIT's REST API.)
+(To do this, you'll need to generate a Personal Access Token from this site: https://github.com/settings/tokens/new)
+(Set the expiration and give it full repo access and user access)
+(curl -u "<username>:<token>" https://api.github.com/user/repos -d '{"name":"<repo>"}')
+Now add it as a remote:
+git remote add origin git@github.com:bobbyhiddn/Test.git
+And push your master/main branch to it: 
+git push -u origin main
+Navigate to your github page and make sure your repo is visible and files are present.
