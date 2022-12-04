@@ -20,6 +20,15 @@ class App(QWidget):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
 
+        # Calculate the x and y coordinates for the center of the screen
+        rect = self.frameGeometry()
+        x = int((app.desktop().width() - rect.width()) / 2)
+        y = int((app.desktop().height() - rect.height()) / 2)
+
+        # Move the application to the center of the screen
+        self.move(x, y)
+
+
         # Create a button for uploading the file
         uploadButton = QPushButton('Upload', self)
         uploadButton.setToolTip('Click to upload the file')
@@ -76,6 +85,19 @@ class App(QWidget):
         directoryLabel.setText("Nexus directory:")
         directoryLabel.move(150, 20)
 
+       # Create a label for displaying the image
+        imageLabel = QLabel(self)
+
+        # Set the pixmap property of the label to the image you want to display
+        imageLabel.setPixmap(QPixmap("Nexus_Logo.png"))
+
+        # Move the label to the top right corner of the application
+        #imageLabel.move(self.width - imageLabel.width(), 0)
+        imageLabel.move(350, 0)
+
+        # Move the label to the bottom of the widget stack
+        imageLabel.raise_()
+
         # Create a label for displaying the uploaded file
         self.uploadedFile = QLabel(self)
         self.uploadedFile.move(250, 250)
@@ -105,3 +127,5 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = App()
     sys.exit(app.exec_())
+
+
