@@ -67,5 +67,20 @@ class App(QWidget):
         auth_key = self.authKey.text()
         nexus_url = self.nexusURL.text()
 
+
         # Use the curl command to upload the file to Nexus, using the authentication key and Nexus URL
-        curl_command = f"curl -u {auth_key} -X PUT '{nexus_url}/repository/raw-repository/{file_path
+        
+        curl_command = f"curl -X PUT -u {auth_key}: {nexus_url} -F file=@{file_path}"
+        try:
+            result = subprocess.check_output(curl_command, shell=True)
+            # If the file was uploaded successfully, display a success message
+            self.uploadedFile.setText("Upload successful!")
+        except:
+            # If the file upload failed, display a failure message
+            self.uploadedFile.setText("Upload failed!")
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = App()
+    sys.exit(app.exec_())
