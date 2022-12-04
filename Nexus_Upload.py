@@ -1,4 +1,5 @@
 import sys
+import subprocess
 
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit
 from PyQt5.QtGui import QPixmap
@@ -18,6 +19,15 @@ class App(QWidget):
     def initUI(self):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
+
+        # Calculate the x and y coordinates for the center of the screen
+        rect = self.frameGeometry()
+        x = int((app.desktop().width() - rect.width()) / 2)
+        y = int((app.desktop().height() - rect.height()) / 2)
+
+        # Move the application to the center of the screen
+        self.move(x, y)
+
 
         # Create a button for uploading the file
         uploadButton = QPushButton('Upload', self)
@@ -55,6 +65,39 @@ class App(QWidget):
         nexusURLLabel.setText("Nexus URL:")
         nexusURLLabel.move(150, 100)
 
+        # Create a text box for the user to enter the Nexus repository
+        self.repository = QLineEdit(self)
+        self.repository.move(250, 60)
+        self.repository.resize(280, 20)
+
+        # Create a label for the Nexus repository text box
+        repositoryLabel = QLabel(self)
+        repositoryLabel.setText("Nexus repository:")
+        repositoryLabel.move(150, 60)
+
+        # Create a text box for the user to enter the Nexus directory
+        self.directory = QLineEdit(self)
+        self.directory.move(250, 20)
+        self.directory.resize(280, 20)
+
+        # Create a label for the Nexus directory text box
+        directoryLabel = QLabel(self)
+        directoryLabel.setText("Nexus directory:")
+        directoryLabel.move(150, 20)
+
+       # Create a label for displaying the image
+        imageLabel = QLabel(self)
+
+        # Set the pixmap property of the label to the image you want to display
+        imageLabel.setPixmap(QPixmap("Nexus_Logo.png"))
+
+        # Move the label to the top right corner of the application
+        #imageLabel.move(self.width - imageLabel.width(), 0)
+        imageLabel.move(350, 0)
+
+        # Move the label to the bottom of the widget stack
+        imageLabel.raise_()
+
         # Create a label for displaying the uploaded file
         self.uploadedFile = QLabel(self)
         self.uploadedFile.move(250, 250)
@@ -62,15 +105,15 @@ class App(QWidget):
         self.show()
 
     def uploadFile(self):
-        # Get the file path, authentication key, and Nexus URL from the text boxes
+        # Get the file path, authentication key, Nexus URL, repository, and directory from the text boxes
         file_path = self.filePath.text()
         auth_key = self.authKey.text()
         nexus_url = self.nexusURL.text()
+        repository = self.repository.text()
+        directory = self.directory.text()
 
-
-        # Use the curl command to upload the file to Nexus, using the authentication key and Nexus URL
-        
-        curl_command = f"curl -X PUT -u {auth_key}: {nexus_url} -F file=@{file_path}"
+        # Use the curl command to upload the file to Nexus, using the authentication key, Nexus URL, repository, and directory
+        curl_command = f"curl -X PUT -u {auth_key}: {nexus_url}/{repository}/{directory} -F file=@{file_path} -k"
         try:
             result = subprocess.check_output(curl_command, shell=True)
             # If the file was uploaded successfully, display a success message
@@ -84,3 +127,5 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = App()
     sys.exit(app.exec_())
+
+
