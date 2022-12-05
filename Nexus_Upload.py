@@ -1,7 +1,7 @@
 import sys
 import subprocess
 
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QProgressBar
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import QCoreApplication
 
@@ -9,7 +9,7 @@ class App(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.title = 'PyQt5 Uploader'
+        self.title = 'Nexus Uploader'
         self.left = 10
         self.top = 10
         self.width = 640
@@ -34,6 +34,24 @@ class App(QWidget):
         uploadButton.setToolTip('Click to upload the file')
         uploadButton.move(250, 220)
         uploadButton.clicked.connect(self.uploadFile)
+
+        # Create a progress bar for displaying the upload status
+        progressBar = QProgressBar(self)
+
+        # Set the minimum and maximum values of the progress bar
+        progressBar.setMinimum(1)
+        progressBar.setMaximum(100)
+
+        # Set the initial value of the progress bar
+        progressBar.setValue(0)
+
+        # Set the position and size of the progress bar
+        progressBar.setGeometry(250, 260, 280, 20)
+
+        # Set the label to be displayed under the upload button
+        progressBar.stackUnder(uploadButton)
+
+
 
         # Create a text box for the user to enter the file path
         self.filePath = QLineEdit(self)
@@ -106,6 +124,7 @@ class App(QWidget):
         self.uploadedFile = QLabel(self)
         self.uploadedFile.move(800, 600)
 
+        #Show the application
         self.show()
 
     def uploadFile(self):
@@ -115,9 +134,15 @@ class App(QWidget):
         nexus_url = self.nexusURL.text()
         repository = self.repository.text()
         directory = self.directory.text()
+        
 
+        
         # Use the curl command to upload the file to Nexus, using the authentication key, Nexus URL, repository, and directory
         curl_command = f"curl -X PUT -u {auth_key}: {nexus_url}/{repository}/{directory} -F file=@{file_path} -k"
+
+        # Update the progress bar to show the progress of the upload
+        progressBar.setValue(currentProgress)
+
         try:
             result = subprocess.check_output(curl_command, shell=True)
             # If the file was uploaded successfully, display a success message
