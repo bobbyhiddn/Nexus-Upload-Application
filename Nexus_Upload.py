@@ -31,7 +31,7 @@ class App(QWidget):
 
 
         # Move the application to the center of the screen
-        self.move(x, y)
+        self.move(240, 90)
 
 
         # Create a button for uploading the file
@@ -70,33 +70,33 @@ class App(QWidget):
 
         # Create a text box for the user to enter the file path
         self.filePath = QLineEdit(self)
-        self.filePath.move(250, 180)
+        self.filePath.move(250, 140)
         self.filePath.resize(280, 20)
 
         # Create a label for the file path text box
         filePathLabel = QLabel(self)
         filePathLabel.setText("File path:")
-        filePathLabel.move(150, 180)
+        filePathLabel.move(150, 140)
 
         # Create a text box for the user to enter the authentication key
         self.authKey = QLineEdit(self)
-        self.authKey.move(250, 140)
+        self.authKey.move(250, 180)
         self.authKey.resize(280, 20)
 
         # Create a label for the authentication key text box
         authKeyLabel = QLabel(self)
         authKeyLabel.setText("Authentication key:")
-        authKeyLabel.move(150, 140)
+        authKeyLabel.move(150, 180)
 
         # Create a text box for the user to enter the Nexus URL
         self.nexusURL = QLineEdit(self)
-        self.nexusURL.move(250, 100)
+        self.nexusURL.move(250, 20)
         self.nexusURL.resize(280, 20)
 
         # Create a label for the Nexus URL text box
         nexusURLLabel = QLabel(self)
         nexusURLLabel.setText("Nexus URL:")
-        nexusURLLabel.move(150, 100)
+        nexusURLLabel.move(150, 20)
 
         # Create a text box for the user to enter the Nexus repository
         self.repository = QLineEdit(self)
@@ -110,13 +110,13 @@ class App(QWidget):
 
         # Create a text box for the user to enter the Nexus directory
         self.directory = QLineEdit(self)
-        self.directory.move(250, 20)
+        self.directory.move(250, 100)
         self.directory.resize(280, 20)
 
         # Create a label for the Nexus directory text box
         directoryLabel = QLabel(self)
         directoryLabel.setText("Nexus directory:")
-        directoryLabel.move(150, 20)
+        directoryLabel.move(150, 100)
 
         # Create a variable that contains all of the fields in the application
         fields = (self.filePath, self.authKey, self.nexusURL, self.repository, self.directory)
