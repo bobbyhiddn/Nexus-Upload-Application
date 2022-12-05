@@ -85,6 +85,10 @@ class App(QWidget):
         directoryLabel.setText("Nexus directory:")
         directoryLabel.move(150, 20)
 
+        # Create a variable that contains all of the fields in the application
+        fields = (self.filePath, self.authKey, self.nexusURL, self.repository, self.directory)
+
+
        # Create a label for displaying the image
         imageLabel = QLabel(self)
 
@@ -95,8 +99,8 @@ class App(QWidget):
         #imageLabel.move(self.width - imageLabel.width(), 0)
         imageLabel.setGeometry(0, 100, 640, 480)
 
-        # Move the label to the bottom of the widget stack
-        imageLabel.raise_()
+        # Set the label to be displayed under the fields variable
+        imageLabel.lower()
 
         # Create a label for displaying the uploaded file
         self.uploadedFile = QLabel(self)
