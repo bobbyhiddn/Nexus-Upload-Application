@@ -31,7 +31,7 @@ class App(QWidget):
 
 
         # Move the application to the center of the screen
-        self.move(x, y)
+        self.move(480, 150)
 
 
         # Create a button for uploading the file
