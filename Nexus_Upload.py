@@ -93,14 +93,14 @@ class App(QWidget):
 
         # Move the label to the top right corner of the application
         #imageLabel.move(self.width - imageLabel.width(), 0)
-        imageLabel.move(350, 0)
+        imageLabel.setGeometry(0, 100, 640, 480)
 
         # Move the label to the bottom of the widget stack
         imageLabel.raise_()
 
         # Create a label for displaying the uploaded file
         self.uploadedFile = QLabel(self)
-        self.uploadedFile.move(250, 250)
+        self.uploadedFile.move(800, 600)
 
         self.show()
 
