@@ -1,12 +1,13 @@
 import sys
 import subprocess
 
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QProgressBar
+from PyQt5.QtWidgets import QApplication, QWidget, QTextEdit, QVBoxLayout, QPushButton, QLabel, QLineEdit, QProgressBar
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import QCoreApplication
+from PyQt5.QtCore import QCoreApplication, QFile
+
 
 class App(QWidget):
-
+    
     def __init__(self):
         super().__init__()
         self.title = 'Nexus Uploader'
@@ -24,6 +25,10 @@ class App(QWidget):
         rect = self.frameGeometry()
         x = int((app.desktop().width() - rect.width()) / 2)
         y = int((app.desktop().height() - rect.height()) / 2)
+
+        # Set the background color of the app to white (#FFFFFF)
+        self.setStyleSheet("font-family: Arial;background-color: #767685;")
+
 
         # Move the application to the center of the screen
         self.move(x, y)
@@ -51,6 +56,16 @@ class App(QWidget):
         # Set the label to be displayed under the upload button
         progressBar.stackUnder(uploadButton)
 
+        # Create a text box for displaying the text from "Explain.txt"
+        self.explainText = QTextEdit(self)
+
+        # Set the position and size of the text box
+        self.explainText.setGeometry(250, 290, 350, 200)
+
+        # Read the contents of "Explain.txt" and set it as the text of the text box
+        with open("Explain.txt") as file:
+            text = file.read()
+            self.explainText.setText(text)
 
 
         # Create a text box for the user to enter the file path
