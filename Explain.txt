@@ -1,1 +1,5 @@
-It would probably help if I put some text here.
+This app uploads files to a Nexus directory within a repo programmatically. 
+
+It does so by running this curl command with the inputs submitted in this form:
+
+curl -X PUT -u {auth_key}: {nexus_url}/{repository}/{directory} -F file=@{file_path} -k
