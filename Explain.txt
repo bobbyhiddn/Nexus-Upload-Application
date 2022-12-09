@@ -1,5 +1,31 @@
-This app uploads files to a Nexus directory within a repo programmatically. 
+This app uploads files to a Nexus directory within a repo programmatically
 
-It does so by running this curl command with the inputs submitted in this form:
+by running this curl command with the inputs submitted in this form:
 
-curl -X PUT -u {auth_key}: {nexus_url}/{repository}/{directory} -F file=@{file_path} -k
+ 
+
+'curl -v -k -X POST "{}"
+
+               -H "accept: application/json"
+
+               -H "Content-Type: multipart/form-data"
+
+               -H "Authorization: Basic {}"
+
+               -F "raw.directory={}"
+
+               -F raw.asset1=@{}
+
+               -F "raw.asset1.filename={}"
+
+ 
+
+In order to get your authorization key, login to Nexus
+
+ 
+
+1. Click your username in the top right corner.
+
+2. Click User Token. Click "Access user token".
+
+3. Copy the bottom "user:password" token.
