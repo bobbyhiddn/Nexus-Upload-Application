@@ -10,19 +10,19 @@ by running this curl command with the inputs submitted in this form:
 
  
 
-> 'curl -v -k -X POST "{}"
->
->               -H "accept: application/json"
->
->               -H "Content-Type: multipart/form-data"
->
->               -H "Authorization: Basic {}"
->
->               -F "raw.directory={}"
->
->               -F raw.asset1=@{}
->
->               -F "raw.asset1.filename={}"
+     'curl -v -k -X POST "{}"
+
+                   -H "accept: application/json"
+
+                   -H "Content-Type: multipart/form-data"
+
+                   -H "Authorization: Basic {}"
+
+                   -F "raw.directory={}"
+
+                   -F raw.asset1=@{}
+
+                   -F "raw.asset1.filename={}"
 
  
 
