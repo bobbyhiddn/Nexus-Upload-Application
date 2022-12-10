@@ -1,6 +1,6 @@
 1. Navigate to whatever directory you want to save the SSH key to.
 2. Open Git Bash
-$ ssh-keygen -t rsa -b 4096 -C "mlmicahlongmire@gmail.com"
+$ ssh-keygen -t rsa -b 4096 -C "email"
 Name the key and set a passphrase. (In this case, TheTome & TheTome.pub)
 cat TheTome.pub
 3. Copy all the contents and navigate to here: https://github.com/settings/keys
@@ -9,7 +9,7 @@ cat TheTome.pub
 6. Turn on ssh-add
 eval `ssh-agent -s`
 7. Add your key.
-ssh-add.exe /d/Keys/.ssh/TheTome
+ssh-add.exe /d/Keys/.ssh/{key}
 (OR run this script: /d/scripts/SSH-Add.sh)
 8. Test using 'ssh -T git@github.com'.
 It should return: Hi bobbyhiddn! You've successfully authenticated, but GitHub does not provide shell access.
