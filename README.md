@@ -10,7 +10,7 @@ by running this curl command with the inputs submitted in this form:
 
  
 
-     'curl -v -k -X POST "{}"
+     curl -v -k -X POST "{}"
 
                    -H "accept: application/json"
 
