@@ -2,6 +2,8 @@
 
 #This application was made to simplify the upload process to the Nexus REST API.
 
+Clone this project and run the executable to start. You can also use the NxUp.py script to do the same thing.
+
 This app uploads files to a Nexus directory within a repo programmatically
 
 by running this curl command with the inputs submitted in this form:

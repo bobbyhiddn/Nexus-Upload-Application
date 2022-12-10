@@ -388,13 +388,13 @@ class App(QWidget):
 
             # Check if the nexus_url value starts with https:// or http://
 
-            if not nexus_url.startswith(https://) and not nexus_url.startswith(http://):
+            if not nexus_url.startswith('https://') and not nexus_url.startswith('http://'):
 
                 # If not, add the https:// prefix to the nexus_url value
 
                 # You can also use the http:// prefix if your Nexus server is accessible using HTTP
 
-                nexus_url = https:// + nexus_url
+                nexus_url = 'https://' + nexus_url
 
  
 
@@ -494,9 +494,9 @@ class App(QWidget):
 
             self.top = 10
 
-            self.width = 800
+            self.width = 650
 
-            self.height = 670
+            self.height = 800
 
             self.initUI()
 
